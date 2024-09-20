@@ -18,8 +18,8 @@ from utils import make_pipe
 # グローバル変数 / デフォルト変数の設定
 device = "cuda"
 DEFAULT_NEGATIVE_PROMPT = "low quality, worst quality"
-DEFAULT_WEIGHT = 1024
 DEFAULT_HEIGHT = 1024
+DEFAULT_WIDTH = 1024
 DEFAULT_CFG_SCALE = 7
 DEFAULT_STEP = 25
 DEFAULT_NUM_IMAGE = 1
@@ -70,7 +70,7 @@ width: {width}
         f.write(info_content.strip())
     return info_filename
 
-def generate(p_prompt, save_dir, create_info=True, n_prompt=DEFAULT_NEGATIVE_PROMPT, height=DEFAULT_HEIGHT, width=DEFAULT_WEIGHT, scale=DEFAULT_CFG_SCALE, steps=DEFAULT_STEP, num_images=DEFAULT_NUM_IMAGE):
+def generate(p_prompt, save_dir, create_info=True, n_prompt=DEFAULT_NEGATIVE_PROMPT, height=DEFAULT_HEIGHT, width=DEFAULT_WIDTH, scale=DEFAULT_CFG_SCALE, steps=DEFAULT_STEP, num_images=DEFAULT_NUM_IMAGE):
     default_n_prompt = "low quality, worst quality, missing limb, bad hands, missing fingers, extra digit, fewer digits, deformed, realism"
     queue_obj = QueueObject(
         height=height,
@@ -115,11 +115,11 @@ def parse_message(message):
     parts = message.split('|')
     main_prompt = parts[0].strip()
     n_prompt = parts[1].strip() if len(parts) > 1 and parts[1].strip() else DEFAULT_NEGATIVE_PROMPT
-    height = int(parts[2].strip()) if len(parts) > 2 else 1024
-    width = int(parts[3].strip()) if len(parts) > 3 else 1024
-    cfg_scale = float(parts[4].strip()) if len(parts) > 4 else 7.0
-    steps = int(parts[5].strip()) if len(parts) > 5 else 25
-    num_images = int(parts[6].strip()) if len(parts) > 6 else 1
+    height = int(parts[2].strip()) if len(parts) > 2 else DEFAULT_HEIGHT
+    width = int(parts[3].strip()) if len(parts) > 3 else DEFAULT_WIDTH
+    cfg_scale = float(parts[4].strip()) if len(parts) > 4 else DEFAULT_CFG_SCALE
+    steps = int(parts[5].strip()) if len(parts) > 5 else DEFAULT_STEP
+    num_images = int(parts[6].strip()) if len(parts) > 6 else DEFAULT_NUM_IMAGE
 
     return main_prompt, n_prompt, height, width, cfg_scale, steps, num_images
 
