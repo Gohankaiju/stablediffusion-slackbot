@@ -15,9 +15,14 @@ import env
 # カスタムモジュールのインポート
 from utils import make_pipe
 
-# グローバル変数の設定
+# グローバル変数 / デフォルト変数の設定
 device = "cuda"
 DEFAULT_NEGATIVE_PROMPT = "low quality, worst quality"
+DEFAULT_WEIGHT = 1024
+DEFAULT_HEIGHT = 1024
+DEFAULT_CFG_SCALE = 7
+DEFAULT_STEP = 25
+DEFAULT_NUM_IMAGE = 1
 
 # Slackアプリの初期化
 app = App(token=os.environ["SLACK_BOT_TOKEN"])
@@ -65,7 +70,7 @@ width: {width}
         f.write(info_content.strip())
     return info_filename
 
-def generate(p_prompt, save_dir, create_info=True, n_prompt=None, height=1024, width=1024, scale=7, steps=25, num_images=1):
+def generate(p_prompt, save_dir, create_info=True, n_prompt=DEFAULT_NEGATIVE_PROMPT, height=DEFAULT_HEIGHT, width=DEFAULT_WEIGHT, scale=DEFAULT_CFG_SCALE, steps=DEFAULT_STEP, num_images=DEFAULT_NUM_IMAGE):
     default_n_prompt = "low quality, worst quality, missing limb, bad hands, missing fingers, extra digit, fewer digits, deformed, realism"
     queue_obj = QueueObject(
         height=height,

@@ -1,2 +1,6 @@
 *.safetensors
+*.png
 **/__pycache__/**
+
+# token記入以降は管理対象外
+env.py
