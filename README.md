@@ -24,9 +24,9 @@ slackチャンネル上での画像生成を可能とすることで、外出先
 1. リポジトリをクローン：
 
 ```shell
-git clone https://github.com/yourusername/ai-image-generator-slackbot.git
+git clone https://github.com/Gohankaiju/stablediffusion-slackbot.git
 
-cd ai-image-generator-slackbot
+cd stablediffusion-slackbot
 ```
 
 2. ライブラリのインストール：
@@ -48,6 +48,7 @@ SLACK_APP_TOKEN='your_slack_app_token'
 
 4. モデルをダウンロード：
 必要なモデルファイルを`/slack-bot/models/`ディレクトリに配置してください。
+その後、`utils.py`の`MODEL_PATH`を編集します
 
 ## 使用方法
 
